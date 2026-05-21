@@ -13,7 +13,8 @@ pub use pull::TuiProgressReporter;
 use semver::Version;
 
 /// Default OSS model to use when `--oss` is passed without an explicit `-m`.
-pub const DEFAULT_OSS_MODEL: &str = "gpt-oss:20b";
+/// Neural Chat: Free, open-source, lightweight model optimized for chat and code tasks.
+pub const DEFAULT_OSS_MODEL: &str = "neural-chat";
 
 /// Prepare the local OSS environment when `--oss` is selected.
 ///
@@ -41,7 +42,7 @@ pub async fn ensure_oss_ready(config: &Config) -> std::io::Result<()> {
         }
         Err(err) => {
             // Not fatal; higher layers may still proceed and surface errors later.
-            tracing::warn!("Failed to query local models from Ollama: {}.", err);
+            tracing::warn!("Failed to query local models from Ollama: {err}.");
         }
     }
 
